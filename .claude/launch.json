@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "deadline-hub-preview",
+      "runtimeExecutable": "/Users/jacksoncatalano/.local/node/bin/npm",
+      "runtimeArgs": ["run", "preview", "--", "--port", "4173", "--strictPort"],
+      "port": 4173,
+      "url": "http://localhost:4173/deadline-hub/"
+    }
+  ]
+}
