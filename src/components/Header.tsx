@@ -2,15 +2,17 @@ import { BackIcon, SettingsIcon } from "./icons";
 
 export default function Header({
   title,
+  scrolled,
   onBack,
   onSettings,
 }: {
   title: string;
+  scrolled: boolean;
   onBack?: () => void;
   onSettings?: () => void;
 }) {
   return (
-    <header className="app-header">
+    <header className={`app-header${scrolled ? " app-header--scrolled" : ""}`}>
       <div className="app-header__side">
         {onBack && (
           <button className="icon-btn" onClick={onBack} aria-label="Back">
@@ -22,7 +24,7 @@ export default function Header({
       <div className="app-header__side app-header__side--right">
         {onSettings && (
           <button className="icon-btn" onClick={onSettings} aria-label="Settings">
-            <SettingsIcon size={22} />
+            <SettingsIcon size={21} />
           </button>
         )}
       </div>

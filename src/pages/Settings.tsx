@@ -3,7 +3,7 @@ import { useApp } from "../data/AppContext";
 import { downloadTextFile } from "../utils/download";
 import { toDateInputValue } from "../utils/date";
 import CourseForm from "../components/CourseForm";
-import { PlusIcon, TrashIcon } from "../components/icons";
+import { ChevronRight, PlusIcon, TrashIcon } from "../components/icons";
 import type { Course, DeadlineType, WorkoutDay } from "../data/types";
 import { makeId } from "../utils/id";
 
@@ -28,21 +28,23 @@ function SemesterSettings() {
   return (
     <div className="settings-group">
       <h3>Semester</h3>
-      <div className="settings-row">
-        <span className="settings-row__label">Start date</span>
-        <input
-          type="date"
-          value={data.settings.semesterStart}
-          onChange={(e) => updateSettings({ semesterStart: e.target.value })}
-        />
-      </div>
-      <div className="settings-row">
-        <span className="settings-row__label">End date</span>
-        <input
-          type="date"
-          value={data.settings.semesterEnd}
-          onChange={(e) => updateSettings({ semesterEnd: e.target.value })}
-        />
+      <div className="grouped-card">
+        <div className="settings-row">
+          <span className="settings-row__label">Start date</span>
+          <input
+            type="date"
+            value={data.settings.semesterStart}
+            onChange={(e) => updateSettings({ semesterStart: e.target.value })}
+          />
+        </div>
+        <div className="settings-row">
+          <span className="settings-row__label">End date</span>
+          <input
+            type="date"
+            value={data.settings.semesterEnd}
+            onChange={(e) => updateSettings({ semesterEnd: e.target.value })}
+          />
+        </div>
       </div>
     </div>
   );
@@ -56,32 +58,35 @@ function CoursesSettings() {
   return (
     <div className="settings-group">
       <h3>Courses</h3>
-      {data.courses.map((c) => (
-        <div
-          className="settings-row"
-          key={c.id}
+      <div className="grouped-card">
+        {data.courses.map((c) => (
+          <button
+            className="settings-row"
+            key={c.id}
+            onClick={() => {
+              setEditing(c);
+              setFormOpen(true);
+            }}
+            style={{ width: "100%", background: "none", border: "none", font: "inherit", color: "inherit", cursor: "pointer" }}
+          >
+            <span className="settings-row__label">
+              <span className="course-dot" style={{ background: c.color, marginRight: 9 }} />
+              {c.code} &mdash; {c.name}
+            </span>
+            <ChevronRight size={16} />
+          </button>
+        ))}
+        <button
+          className="settings-row settings-action"
+          style={{ justifyContent: "flex-start" }}
           onClick={() => {
-            setEditing(c);
+            setEditing(null);
             setFormOpen(true);
           }}
-          style={{ cursor: "pointer" }}
         >
-          <span className="settings-row__label">
-            <span className="course-dot" style={{ background: c.color, marginRight: 8 }} />
-            {c.code} &mdash; {c.name}
-          </span>
-        </div>
-      ))}
-      <button
-        className="btn btn-secondary btn-block"
-        style={{ marginTop: 10 }}
-        onClick={() => {
-          setEditing(null);
-          setFormOpen(true);
-        }}
-      >
-        <PlusIcon size={16} /> Add course
-      </button>
+          <PlusIcon size={16} /> Add course
+        </button>
+      </div>
       <CourseForm open={formOpen} onClose={() => setFormOpen(false)} editing={editing} />
     </div>
   );
@@ -180,22 +185,24 @@ function RewardSettings() {
   return (
     <div className="settings-group">
       <h3>Scroll time rewards (minutes)</h3>
-      {REWARD_TYPES.map((t) => (
-        <div className="settings-row" key={t}>
-          <span className="settings-row__label" style={{ textTransform: "capitalize" }}>
-            {t}
-          </span>
-          <input
-            type="number"
-            value={data.settings.rewardMinutes[t]}
-            onChange={(e) =>
-              updateSettings({
-                rewardMinutes: { ...data.settings.rewardMinutes, [t]: Number(e.target.value) },
-              })
-            }
-          />
-        </div>
-      ))}
+      <div className="grouped-card">
+        {REWARD_TYPES.map((t) => (
+          <div className="settings-row" key={t}>
+            <span className="settings-row__label" style={{ textTransform: "capitalize" }}>
+              {t}
+            </span>
+            <input
+              type="number"
+              value={data.settings.rewardMinutes[t]}
+              onChange={(e) =>
+                updateSettings({
+                  rewardMinutes: { ...data.settings.rewardMinutes, [t]: Number(e.target.value) },
+                })
+              }
+            />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
@@ -229,14 +236,20 @@ function BackupSettings() {
   return (
     <div className="settings-group">
       <h3>Backup</h3>
-      <button className="btn btn-secondary btn-block" onClick={handleExport}>
-        Export backup
-      </button>
-      <button className="btn btn-secondary btn-block" style={{ marginTop: 10 }} onClick={() => fileRef.current?.click()}>
-        Import backup
-      </button>
+      <div className="grouped-card">
+        <button className="settings-row settings-action" style={{ justifyContent: "flex-start" }} onClick={handleExport}>
+          Export backup
+        </button>
+        <button
+          className="settings-row settings-action"
+          style={{ justifyContent: "flex-start" }}
+          onClick={() => fileRef.current?.click()}
+        >
+          Import backup
+        </button>
+      </div>
       <input ref={fileRef} type="file" accept="application/json,.json" hidden onChange={handleImportFile} />
-      {message && <p className="card__sub" style={{ marginTop: 8 }}>{message}</p>}
+      {message && <p className="card__sub" style={{ margin: "8px 6px 0" }}>{message}</p>}
     </div>
   );
 }
@@ -249,24 +262,39 @@ function DangerZone() {
     <div className="settings-group">
       <h3>Reset</h3>
       {!confirming ? (
-        <button className="btn btn-danger btn-block" onClick={() => setConfirming(true)}>
-          Reset all data
-        </button>
+        <div className="grouped-card">
+          <button
+            className="settings-row settings-action settings-action--danger"
+            style={{ justifyContent: "flex-start" }}
+            onClick={() => setConfirming(true)}
+          >
+            Reset all data
+          </button>
+        </div>
       ) : (
         <>
-          <p className="inline-error">This deletes everything stored on this phone. This can't be undone.</p>
-          <button
-            className="btn btn-danger btn-block"
-            onClick={() => {
-              resetAll();
-              setConfirming(false);
-            }}
-          >
-            Yes, erase everything
-          </button>
-          <button className="btn btn-secondary btn-block" style={{ marginTop: 10 }} onClick={() => setConfirming(false)}>
-            Cancel
-          </button>
+          <p className="inline-error" style={{ margin: "0 6px 10px" }}>
+            This deletes everything stored on this phone. This can&rsquo;t be undone.
+          </p>
+          <div className="grouped-card">
+            <button
+              className="settings-row settings-action settings-action--danger"
+              style={{ justifyContent: "flex-start" }}
+              onClick={() => {
+                resetAll();
+                setConfirming(false);
+              }}
+            >
+              Yes, erase everything
+            </button>
+            <button
+              className="settings-row settings-action"
+              style={{ justifyContent: "flex-start", color: "var(--text)" }}
+              onClick={() => setConfirming(false)}
+            >
+              Cancel
+            </button>
+          </div>
         </>
       )}
     </div>

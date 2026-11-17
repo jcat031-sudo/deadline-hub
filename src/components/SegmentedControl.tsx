@@ -7,8 +7,14 @@ export default function SegmentedControl<T extends string>({
   value: T;
   onChange: (v: T) => void;
 }) {
+  const index = Math.max(
+    0,
+    options.findIndex((o) => o.value === value)
+  );
+
   return (
-    <div className="segmented">
+    <div className="segmented" style={{ "--count": options.length } as React.CSSProperties}>
+      <div className="segmented__thumb" style={{ transform: `translateX(${index * 100}%)` }} />
       {options.map((opt) => (
         <button
           key={opt.value}

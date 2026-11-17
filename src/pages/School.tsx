@@ -73,18 +73,20 @@ function ScheduleSection() {
             <p className="group-header" style={{ marginTop: 10 }}>
               {dayLabel(day)}
             </p>
-            {items.map(({ course, meeting }) => (
-              <div className="list-row" key={meeting.id}>
-                <span className="course-dot" style={{ background: course.color }} />
-                <div className="list-row__main">
-                  <p className="list-row__title">{course.code}</p>
-                  <p className="list-row__sub">
-                    {formatTimeRange(meeting.startTime, meeting.endTime)} &middot; {meeting.room}
-                    {meeting.label ? ` · ${meeting.label}` : ""}
-                  </p>
+            <div className="grouped-card">
+              {items.map(({ course, meeting }) => (
+                <div className="list-row" key={meeting.id} style={{ padding: "12px 14px" }}>
+                  <span className="course-dot" style={{ background: course.color }} />
+                  <div className="list-row__main">
+                    <p className="list-row__title">{course.code}</p>
+                    <p className="list-row__sub">
+                      {formatTimeRange(meeting.startTime, meeting.endTime)} &middot; {meeting.room}
+                      {meeting.label ? ` · ${meeting.label}` : ""}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         );
       })}
@@ -183,7 +185,7 @@ function GroupBlock({
   return (
     <div>
       {!hideTitle && <p className="group-header">{title}</p>}
-      <div className="card" style={{ padding: "0 12px" }}>
+      <div className="grouped-card" style={{ padding: "0 14px" }}>
         {items.map((d) => (
           <DeadlineRow key={d.id} deadline={d} now={now} courseColor={colorFor(d.course)} onTap={() => onTap(d)} />
         ))}
