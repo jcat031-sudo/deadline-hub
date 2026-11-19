@@ -4,6 +4,8 @@ import type {
   Course,
   Deadline,
   DeadlineType,
+  Meal,
+  NutritionLogEntry,
   ScrollLogEntry,
   Settings,
   WorkoutDay,
@@ -54,6 +56,19 @@ interface AppContextValue {
   finishWorkoutSession: (session: WorkoutSession) => void;
 
   addScrollMinutes: (minutes: number, source: string, deadlineId?: string) => void;
+
+  addMeal: (meal: Omit<Meal, "id">) => void;
+  updateMeal: (id: string, patch: Partial<Omit<Meal, "id">>) => void;
+  deleteMeal: (id: string) => void;
+  logMealToDate: (mealId: string, servings: number, date: string) => void;
+  quickAddNutritionEntry: (
+    input: { name: string; calories: number; protein: number; carbs: number; fat: number; date: string },
+    saveAsMeal: boolean
+  ) => void;
+  deleteNutritionLogEntry: (id: string) => void;
+
+  upsertWeightEntry: (date: string, weight: number) => void;
+  deleteWeightEntry: (id: string) => void;
 
   exportBackupString: () => string;
   importBackupString: (json: string) => void;
@@ -258,6 +273,89 @@ export function AppProvider({ children }: { children: ReactNode }) {
       }));
     }
 
+    function addMeal(meal: Omit<Meal, "id">) {
+      setData((d) => ({ ...d, meals: [...d.meals, { ...meal, id: makeId() }] }));
+    }
+
+    function updateMeal(id: string, patch: Partial<Omit<Meal, "id">>) {
+      setData((d) => ({ ...d, meals: d.meals.map((m) => (m.id === id ? { ...m, ...patch } : m)) }));
+    }
+
+    function deleteMeal(id: string) {
+      setData((d) => ({ ...d, meals: d.meals.filter((m) => m.id !== id) }));
+    }
+
+    function logMealToDate(mealId: string, servings: number, date: string) {
+      setData((d) => {
+        const meal = d.meals.find((m) => m.id === mealId);
+        if (!meal) return d;
+        const entry: NutritionLogEntry = {
+          id: makeId(),
+          date,
+          mealId: meal.id,
+          name: meal.name,
+          servings,
+          calories: Math.round(meal.calories * servings),
+          protein: Math.round(meal.protein * servings),
+          carbs: Math.round(meal.carbs * servings),
+          fat: Math.round(meal.fat * servings),
+          createdAt: new Date().toISOString(),
+        };
+        return { ...d, nutritionLog: [...d.nutritionLog, entry] };
+      });
+    }
+
+    function quickAddNutritionEntry(
+      input: { name: string; calories: number; protein: number; carbs: number; fat: number; date: string },
+      saveAsMeal: boolean
+    ) {
+      setData((d) => {
+        const entry: NutritionLogEntry = {
+          id: makeId(),
+          date: input.date,
+          name: input.name,
+          servings: 1,
+          calories: input.calories,
+          protein: input.protein,
+          carbs: input.carbs,
+          fat: input.fat,
+          createdAt: new Date().toISOString(),
+        };
+        const meals = saveAsMeal
+          ? [
+              ...d.meals,
+              {
+                id: makeId(),
+                name: input.name,
+                calories: input.calories,
+                protein: input.protein,
+                carbs: input.carbs,
+                fat: input.fat,
+              },
+            ]
+          : d.meals;
+        return { ...d, nutritionLog: [...d.nutritionLog, entry], meals };
+      });
+    }
+
+    function deleteNutritionLogEntry(id: string) {
+      setData((d) => ({ ...d, nutritionLog: d.nutritionLog.filter((e) => e.id !== id) }));
+    }
+
+    function upsertWeightEntry(date: string, weight: number) {
+      setData((d) => {
+        const existing = d.weightLog.find((w) => w.date === date);
+        const weightLog = existing
+          ? d.weightLog.map((w) => (w.date === date ? { ...w, weight } : w))
+          : [...d.weightLog, { id: makeId(), date, weight }];
+        return { ...d, weightLog };
+      });
+    }
+
+    function deleteWeightEntry(id: string) {
+      setData((d) => ({ ...d, weightLog: d.weightLog.filter((w) => w.id !== id) }));
+    }
+
     function exportBackupString() {
       return exportBackup(data);
     }
@@ -289,6 +387,14 @@ export function AppProvider({ children }: { children: ReactNode }) {
       updateWorkoutSession,
       finishWorkoutSession,
       addScrollMinutes,
+      addMeal,
+      updateMeal,
+      deleteMeal,
+      logMealToDate,
+      quickAddNutritionEntry,
+      deleteNutritionLogEntry,
+      upsertWeightEntry,
+      deleteWeightEntry,
       exportBackupString,
       importBackupString,
       resetAll,

@@ -2,10 +2,16 @@ import { useApp } from "../data/AppContext";
 import { useNow } from "../hooks/useNow";
 import Card from "../components/Card";
 import type { TabKey } from "../components/BottomNav";
+import type { FitnessSegment } from "./Fitness";
 import { findNextClass } from "../utils/schedule";
 import { formatClassIn, formatCountdown, formatLongDate, formatTime12, greeting, toDateInputValue } from "../utils/date";
+import { remaining, totalsForDate } from "../utils/nutritionHelpers";
 
-export default function Home({ onNavigate }: { onNavigate: (tab: TabKey) => void }) {
+export default function Home({
+  onNavigate,
+}: {
+  onNavigate: (tab: TabKey, fitnessSegment?: FitnessSegment) => void;
+}) {
   const { data } = useApp();
   const now = useNow();
 
@@ -28,6 +34,8 @@ export default function Home({ onNavigate }: { onNavigate: (tab: TabKey) => void
   const scrollToday = data.scrollLog
     .filter((e) => e.date === todayStr)
     .reduce((sum, e) => sum + e.minutes, 0);
+
+  const nutritionRemaining = remaining(data.settings.nutritionTargets, totalsForDate(data.nutritionLog, todayStr));
 
   return (
     <div>
@@ -85,10 +93,18 @@ export default function Home({ onNavigate }: { onNavigate: (tab: TabKey) => void
         )}
       </Card>
 
-      <Card onClick={() => onNavigate("gym")}>
+      <Card onClick={() => onNavigate("fitness", "workout")}>
         <p className="card__title">Today's workout</p>
         <p className="card__main">{data.settings.nextWorkoutDay} day</p>
         <p className="card__sub">{data.workoutProgram[data.settings.nextWorkoutDay].length} exercises</p>
+      </Card>
+
+      <Card onClick={() => onNavigate("fitness", "nutrition")}>
+        <p className="card__title">Nutrition remaining today</p>
+        <p className="card__main">
+          {nutritionRemaining.calories >= 0 ? nutritionRemaining.calories : 0} cal
+        </p>
+        <p className="card__sub">{nutritionRemaining.protein >= 0 ? nutritionRemaining.protein : 0}g protein remaining</p>
       </Card>
 
       <Card onClick={() => onNavigate("scroll")}>

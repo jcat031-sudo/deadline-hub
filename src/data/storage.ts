@@ -10,7 +10,36 @@ function defaultData(): AppData {
     workoutProgram: SEED_WORKOUT_PROGRAM,
     workoutSessions: [],
     scrollLog: [],
+    meals: [],
+    nutritionLog: [],
+    weightLog: [],
     settings: SEED_SETTINGS,
+  };
+}
+
+// Field-by-field fallback (never a blind spread) so that data saved by an
+// older version of the app — missing fields this version added later, like
+// meals/nutritionLog/weightLog or settings.nutritionTargets — merges cleanly
+// with defaults instead of losing anything or crashing. Existing workout
+// logs, deadlines, courses, etc. are preserved as-is.
+function hydrate(data: Partial<AppData> | null | undefined): AppData {
+  const base = defaultData();
+  const d = data ?? {};
+  return {
+    courses: d.courses ?? base.courses,
+    deadlines: d.deadlines ?? base.deadlines,
+    workoutProgram: d.workoutProgram ?? base.workoutProgram,
+    workoutSessions: d.workoutSessions ?? base.workoutSessions,
+    scrollLog: d.scrollLog ?? base.scrollLog,
+    meals: d.meals ?? base.meals,
+    nutritionLog: d.nutritionLog ?? base.nutritionLog,
+    weightLog: d.weightLog ?? base.weightLog,
+    settings: {
+      ...base.settings,
+      ...d.settings,
+      rewardMinutes: { ...base.settings.rewardMinutes, ...d.settings?.rewardMinutes },
+      nutritionTargets: { ...base.settings.nutritionTargets, ...d.settings?.nutritionTargets },
+    },
   };
 }
 
@@ -18,16 +47,7 @@ export function loadData(): AppData {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return defaultData();
-    const parsed = JSON.parse(raw) as Partial<AppData>;
-    const base = defaultData();
-    return {
-      courses: parsed.courses ?? base.courses,
-      deadlines: parsed.deadlines ?? base.deadlines,
-      workoutProgram: parsed.workoutProgram ?? base.workoutProgram,
-      workoutSessions: parsed.workoutSessions ?? base.workoutSessions,
-      scrollLog: parsed.scrollLog ?? base.scrollLog,
-      settings: { ...base.settings, ...parsed.settings },
-    };
+    return hydrate(JSON.parse(raw) as Partial<AppData>);
   } catch (e) {
     console.error("Failed to load data, resetting to defaults", e);
     return defaultData();
@@ -53,14 +73,5 @@ export function exportBackup(data: AppData): string {
 
 export function parseBackup(json: string): AppData {
   const parsed = JSON.parse(json);
-  const data = parsed.data ?? parsed;
-  const base = defaultData();
-  return {
-    courses: data.courses ?? base.courses,
-    deadlines: data.deadlines ?? base.deadlines,
-    workoutProgram: data.workoutProgram ?? base.workoutProgram,
-    workoutSessions: data.workoutSessions ?? base.workoutSessions,
-    scrollLog: data.scrollLog ?? base.scrollLog,
-    settings: { ...base.settings, ...data.settings },
-  };
+  return hydrate(parsed.data ?? parsed);
 }

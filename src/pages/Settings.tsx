@@ -4,11 +4,17 @@ import { downloadTextFile } from "../utils/download";
 import { toDateInputValue } from "../utils/date";
 import CourseForm from "../components/CourseForm";
 import { ChevronRight, PlusIcon, TrashIcon } from "../components/icons";
-import type { Course, DeadlineType, WorkoutDay } from "../data/types";
+import type { Course, DeadlineType, NutritionTargets, WorkoutDay } from "../data/types";
 import { makeId } from "../utils/id";
 
 const DAYS: WorkoutDay[] = ["Push", "Pull", "Legs"];
 const REWARD_TYPES: DeadlineType[] = ["homework", "quiz", "lab report", "project", "midterm", "final", "other"];
+const NUTRITION_FIELDS: { key: keyof NutritionTargets; label: string }[] = [
+  { key: "calories", label: "Calories" },
+  { key: "protein", label: "Protein (g)" },
+  { key: "carbs", label: "Carbs (g)" },
+  { key: "fat", label: "Fat (g)" },
+];
 
 export default function Settings() {
   return (
@@ -16,9 +22,35 @@ export default function Settings() {
       <SemesterSettings />
       <CoursesSettings />
       <WorkoutProgramSettings />
+      <NutritionTargetSettings />
       <RewardSettings />
       <BackupSettings />
       <DangerZone />
+    </div>
+  );
+}
+
+function NutritionTargetSettings() {
+  const { data, updateSettings } = useApp();
+  return (
+    <div className="settings-group">
+      <h3>Nutrition targets</h3>
+      <div className="grouped-card">
+        {NUTRITION_FIELDS.map(({ key, label }) => (
+          <div className="settings-row" key={key}>
+            <span className="settings-row__label">{label}</span>
+            <input
+              type="number"
+              value={data.settings.nutritionTargets[key]}
+              onChange={(e) =>
+                updateSettings({
+                  nutritionTargets: { ...data.settings.nutritionTargets, [key]: Number(e.target.value) },
+                })
+              }
+            />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

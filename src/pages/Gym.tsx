@@ -227,9 +227,11 @@ function GrowthSection() {
             <p className="card__title">{def.name} &mdash; top set</p>
             <LineChart
               series={[
-                { label: "Weight", color: "var(--accent)", points: weightSeries },
-                { label: "Est. 1RM", color: "#9ca3af", points: rmSeries },
+                { label: "Weight", color: "var(--accent)", points: weightSeries, area: true },
+                { label: "Est. 1RM", color: "#9ca3af", points: rmSeries, dashed: true },
               ]}
+              formatX={(x) => new Date(x).toLocaleDateString(undefined, { month: "short", day: "numeric" })}
+              formatY={(y) => `${Math.round(y)} lb`}
             />
             <div style={{ display: "flex", gap: 14, marginTop: 6, fontSize: 12 }}>
               <span>

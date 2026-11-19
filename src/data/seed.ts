@@ -157,4 +157,10 @@ export const SEED_SETTINGS: Settings = {
     other: 10,
   },
   nextWorkoutDay: "Push",
+  nutritionTargets: {
+    calories: 3700,
+    protein: 200,
+    carbs: 500,
+    fat: 100,
+  },
 };

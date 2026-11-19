@@ -5,7 +5,7 @@ import Header from "./components/Header";
 import Home from "./pages/Home";
 import School from "./pages/School";
 import Finance from "./pages/Finance";
-import Gym from "./pages/Gym";
+import Fitness, { type FitnessSegment } from "./pages/Fitness";
 import ScrollTime from "./pages/ScrollTime";
 import Settings from "./pages/Settings";
 
@@ -13,12 +13,13 @@ const TAB_TITLES: Record<TabKey, string> = {
   home: "Deadline Hub",
   school: "School",
   finance: "Finance",
-  gym: "Gym",
+  fitness: "Fitness",
   scroll: "Scroll Time",
 };
 
 export default function App() {
   const [tab, setTab] = useState<TabKey>("home");
+  const [fitnessSegment, setFitnessSegment] = useState<FitnessSegment>("workout");
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const contentRef = useRef<HTMLElement>(null);
@@ -32,6 +33,11 @@ export default function App() {
 
   function handleScroll(e: React.UIEvent<HTMLElement>) {
     setScrolled(e.currentTarget.scrollTop > 8);
+  }
+
+  function navigate(nextTab: TabKey, segment?: FitnessSegment) {
+    setTab(nextTab);
+    if (segment) setFitnessSegment(segment);
   }
 
   const title = settingsOpen ? "Settings" : TAB_TITLES[tab];
@@ -50,10 +56,10 @@ export default function App() {
           <Settings />
         ) : (
           <>
-            {tab === "home" && <Home onNavigate={setTab} />}
+            {tab === "home" && <Home onNavigate={navigate} />}
             {tab === "school" && <School />}
             {tab === "finance" && <Finance />}
-            {tab === "gym" && <Gym />}
+            {tab === "fitness" && <Fitness segment={fitnessSegment} onSegmentChange={setFitnessSegment} />}
             {tab === "scroll" && <ScrollTime />}
           </>
         )}

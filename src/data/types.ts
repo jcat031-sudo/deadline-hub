@@ -92,11 +92,52 @@ export interface RewardMinutes {
   other: number;
 }
 
+export interface NutritionTargets {
+  calories: number;
+  protein: number;
+  carbs: number;
+  fat: number;
+}
+
 export interface Settings {
   semesterStart: string; // YYYY-MM-DD
   semesterEnd: string; // YYYY-MM-DD
   rewardMinutes: RewardMinutes;
   nextWorkoutDay: WorkoutDay;
+  nutritionTargets: NutritionTargets;
+}
+
+/** A saved, reusable meal in the user's library. Macros are per single serving. */
+export interface Meal {
+  id: string;
+  name: string;
+  calories: number;
+  protein: number;
+  carbs: number;
+  fat: number;
+  servingNote?: string; // e.g. "1 scoop", "1 bowl"
+}
+
+/** One logged food entry for a given day. Macro fields are the entry's TOTAL
+ * (already multiplied by servings), snapshotted at log time so later edits to
+ * the source meal don't retroactively change history. */
+export interface NutritionLogEntry {
+  id: string;
+  date: string; // YYYY-MM-DD
+  mealId?: string; // present if logged from the library
+  name: string;
+  servings: number;
+  calories: number;
+  protein: number;
+  carbs: number;
+  fat: number;
+  createdAt: string;
+}
+
+export interface WeightEntry {
+  id: string;
+  date: string; // YYYY-MM-DD, one entry per day
+  weight: number; // lb
 }
 
 export interface AppData {
@@ -105,5 +146,8 @@ export interface AppData {
   workoutProgram: WorkoutProgram;
   workoutSessions: WorkoutSession[];
   scrollLog: ScrollLogEntry[];
+  meals: Meal[];
+  nutritionLog: NutritionLogEntry[];
+  weightLog: WeightEntry[];
   settings: Settings;
 }
