@@ -9,12 +9,17 @@ import { fileURLToPath } from "node:url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUT_PATH = path.join(__dirname, "..", "public", "news.json");
 const MAX_ITEMS = 30;
+// No single source may take up more than this many of the final slots, so one
+// high-volume feed can't crowd the others out after the recency sort.
+const MAX_PER_SOURCE = 10;
 
+// Four independent publishers (not just CNBC sub-sections) so the final list
+// is actually a mix, not duplicates of the same newsroom's stories.
 const FEEDS = [
   { source: "CNBC", url: "https://www.cnbc.com/id/100003114/device/rss/rss.html" },
-  { source: "CNBC Earnings", url: "https://www.cnbc.com/id/15839135/device/rss/rss.html" },
-  { source: "CNBC Economy", url: "https://www.cnbc.com/id/20910258/device/rss/rss.html" },
   { source: "MarketWatch", url: "https://feeds.content.dowjones.io/public/rss/mw_topstories" },
+  { source: "Investing.com", url: "https://www.investing.com/rss/news_25.rss" },
+  { source: "Benzinga", url: "https://www.benzinga.com/feed" },
 ];
 
 const NAMED_ENTITIES = {
@@ -70,18 +75,22 @@ async function main() {
   const results = await Promise.allSettled(FEEDS.map(fetchFeed));
 
   const allItems = [];
-  const errors = [];
+  let failures = 0;
   results.forEach((r, i) => {
-    if (r.status === "fulfilled") allItems.push(...r.value);
-    else errors.push(`${FEEDS[i].source}: ${r.reason}`);
+    const feed = FEEDS[i];
+    if (r.status === "fulfilled") {
+      console.log(`${feed.source}: fetched ${r.value.length} item(s)`);
+      allItems.push(...r.value);
+    } else {
+      failures++;
+      // ::error:: annotations surface directly in the GitHub Actions run summary,
+      // not just buried in the log text.
+      console.log(`::error title=Feed failed: ${feed.source}::${feed.url} — ${r.reason}`);
+    }
   });
 
-  if (errors.length) {
-    console.warn("Some feeds failed:\n" + errors.join("\n"));
-  }
-
-  if (allItems.length === 0) {
-    console.error("All feeds failed, leaving existing news.json untouched.");
+  if (failures === FEEDS.length) {
+    console.log("::error::All feeds failed, leaving existing news.json untouched.");
     process.exit(1);
   }
 
@@ -96,9 +105,25 @@ async function main() {
 
   deduped.sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime());
 
+  // Cap per source so one high-volume feed can't crowd out the others.
+  const perSourceCount = {};
+  const final = [];
+  for (const item of deduped) {
+    const count = perSourceCount[item.source] ?? 0;
+    if (count >= MAX_PER_SOURCE) continue;
+    perSourceCount[item.source] = count + 1;
+    final.push(item);
+    if (final.length >= MAX_ITEMS) break;
+  }
+
+  console.log("Final mix: " + Object.entries(perSourceCount).map(([s, n]) => `${s}=${n}`).join(", "));
+  if (failures > 0) {
+    console.log(`::warning::${failures} of ${FEEDS.length} feed(s) failed this run; see the error annotations above.`);
+  }
+
   const output = {
     generatedAt: new Date().toISOString(),
-    items: deduped.slice(0, MAX_ITEMS),
+    items: final,
   };
 
   await writeFile(OUT_PATH, JSON.stringify(output, null, 2) + "\n", "utf-8");

@@ -38,6 +38,7 @@ export default defineConfig({
             options: {
               cacheName: "news-cache",
               networkTimeoutSeconds: 4,
+              cacheableResponse: { statuses: [0, 200] },
               expiration: { maxEntries: 4, maxAgeSeconds: 7 * 24 * 3600 },
             },
           },

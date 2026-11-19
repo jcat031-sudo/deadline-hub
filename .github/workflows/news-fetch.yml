@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 jobs:
   fetch:
@@ -26,13 +27,26 @@ jobs:
         run: node scripts/fetch-news.mjs
 
       - name: Commit and push if changed
+        id: commit
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           if git diff --quiet -- public/news.json; then
             echo "No changes to news.json"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
           else
             git add public/news.json
             git commit -m "Update finance news"
             git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
+
+      # Commits made with the default GITHUB_TOKEN never trigger other
+      # workflows' `on: push` (anti-recursion protection), so the Pages
+      # deploy would otherwise never pick up the new news.json. Trigger it
+      # explicitly instead.
+      - name: Trigger Pages redeploy
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run deploy.yml --ref main

@@ -796,6 +796,22 @@
   letter-spacing: -0.005em;
 }
 
+.spinner {
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  border: 2px solid var(--text-faint);
+  border-top-color: var(--text);
+  border-radius: 999px;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .news-refresh {
   display: flex;
   align-items: center;

@@ -42,7 +42,13 @@ export default function Finance() {
     setLoading(true);
     setError("");
     try {
-      const res = await fetch(`${import.meta.env.BASE_URL}news.json?t=${Date.now()}`, { cache: "no-store" });
+      // No cache-busting query param: the service worker's runtime cache (used
+      // as the offline fallback) keys by URL, and a different query string on
+      // every refresh would mean that fallback could never match. `cache:
+      // "no-store"` already guarantees this specific request skips the HTTP
+      // cache, and the service worker's NetworkFirst rule (see vite.config.ts)
+      // guarantees it always tries the network first regardless.
+      const res = await fetch(`${import.meta.env.BASE_URL}news.json`, { cache: "no-store" });
       if (!res.ok) throw new Error(`Request failed (${res.status})`);
       const data: NewsFile = await res.json();
       setNews(data);
@@ -68,10 +74,20 @@ export default function Finance() {
     <div>
       <div className="news-refresh">
         <span>
-          {news ? `Updated ${timeAgo(news.generatedAt, new Date())}` : loading ? "Loading…" : "No data yet"}
+          {loading
+            ? "Refreshing…"
+            : news
+              ? `Updated ${timeAgo(news.generatedAt, new Date())}`
+              : "No data yet"}
         </span>
-        <button className="btn btn-secondary" style={{ minHeight: 36, padding: "6px 14px" }} onClick={load} disabled={loading}>
-          {loading ? "Refreshing…" : "Refresh"}
+        <button
+          className="btn btn-secondary"
+          style={{ minHeight: 36, padding: "6px 14px", gap: 8 }}
+          onClick={load}
+          disabled={loading}
+        >
+          {loading && <span className="spinner" aria-hidden="true" />}
+          {loading ? "Refreshing" : "Refresh"}
         </button>
       </div>
 
