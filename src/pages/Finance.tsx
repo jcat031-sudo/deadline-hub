@@ -36,11 +36,13 @@ export default function Finance() {
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [checkedNote, setCheckedNote] = useState("");
   const [, forceTick] = useState(0);
 
   const load = useCallback(async () => {
     setLoading(true);
     setError("");
+    setCheckedNote("");
     try {
       // No cache-busting query param: the service worker's runtime cache (used
       // as the offline fallback) keys by URL, and a different query string on
@@ -51,7 +53,15 @@ export default function Finance() {
       const res = await fetch(`${import.meta.env.BASE_URL}news.json`, { cache: "no-store" });
       if (!res.ok) throw new Error(`Request failed (${res.status})`);
       const data: NewsFile = await res.json();
-      setNews(data);
+      // The fetch succeeding doesn't mean there's anything NEW — the feed is
+      // only regenerated when the GitHub Action runs, which isn't tied to
+      // this tap. Say so explicitly instead of leaving it ambiguous.
+      setNews((prev) => {
+        if (prev && prev.generatedAt === data.generatedAt) {
+          setCheckedNote("Checked — no new headlines since last refresh.");
+        }
+        return data;
+      });
       localStorage.setItem(CACHE_KEY, JSON.stringify(data));
     } catch {
       setError(news ? "Couldn't refresh — showing saved headlines." : "No connection and no saved headlines yet.");
@@ -92,6 +102,13 @@ export default function Finance() {
       </div>
 
       {error && <p className="inline-error">{error}</p>}
+      {!error && checkedNote && <p className="card__sub" style={{ marginBottom: 10 }}>{checkedNote}</p>}
+      {!error && !checkedNote && (
+        <p className="card__sub" style={{ marginBottom: 10 }}>
+          Headlines are regenerated in the background every so often, not on tap — refresh just checks for whatever's
+          newest right now.
+        </p>
+      )}
 
       {!news && !loading && !error && <p className="empty-state">No news yet.</p>}
 
