@@ -1,53 +1,161 @@
 {
-  "generatedAt": "2026-11-20T02:45:38.970Z",
+  "generatedAt": "2026-11-20T10:43:25.957Z",
   "items": [
     {
-      "title": "Anthropic IPO 'exactly what the markets need', but analysts warn of volatility",
-      "link": "https://www.cnbc.com/2026/11/20/anthropic-ipo-stocks-market.html",
-      "source": "CNBC",
-      "publishedAt": "2026-11-20T02:33:39.000Z"
-    },
-    {
-      "title": "Exclusive-Citi underestimated risky assets by $35 billion after incorrectly recording trades, sources say",
-      "link": "https://www.investing.com/news/stock-market-news/exclusivecitiincorrectly-booked-trades-underestimatedrisky-assets-by-35-billion-sources-say-5040342",
+      "title": "Exclusive-Beijing to bar young ’red-chip’ firms from listing outside mainland China, sources say",
+      "link": "https://www.investing.com/news/stock-market-news/exclusivebeijing-to-bar-young-redchip-firms-from-listing-outside-mainland-china-sources-say-5040979",
       "source": "Investing.com",
-      "publishedAt": "2026-11-20T02:18:24.000Z"
+      "publishedAt": "2026-11-20T10:24:44.000Z"
     },
     {
-      "title": "SoftBank plunges over 16% as AI sell-off hits Asian tech stocks following Anthropic debut",
+      "title": "Why is ASML stock sliding today?",
+      "link": "https://www.investing.com/news/stock-market-news/why-is-asml-stock-sliding-today-93CH-5041123",
+      "source": "Investing.com",
+      "publishedAt": "2026-11-20T10:22:37.000Z"
+    },
+    {
+      "title": "Why is BE Semiconductor Industries stock sliding today?",
+      "link": "https://www.investing.com/news/stock-market-news/why-is-be-semiconductor-industries-stock-sliding-today-93CH-5041122",
+      "source": "Investing.com",
+      "publishedAt": "2026-11-20T10:22:09.000Z"
+    },
+    {
+      "title": "Why is Soitec stock sliding today?",
+      "link": "https://www.investing.com/news/stock-market-news/why-is-soitec-stock-sliding-today-93CH-5041121",
+      "source": "Investing.com",
+      "publishedAt": "2026-11-20T10:20:39.000Z"
+    },
+    {
+      "title": "Why is ASM International stock sliding today?",
+      "link": "https://www.investing.com/news/stock-market-news/why-is-asm-international-stock-sliding-today-93CH-5041116",
+      "source": "Investing.com",
+      "publishedAt": "2026-11-20T10:17:21.000Z"
+    },
+    {
+      "title": "My husband spent $80,000 on a boat, yet says my plans for a $100,000 pottery studio are irresponsible. Who’s right?",
+      "link": "https://www.marketwatch.com/story/my-husband-spent-80-000-on-a-boat-yet-says-my-plans-for-a-100-000-pottery-studio-are-irresponsible-whos-right-1a69436a?mod=mw_rss_topstories",
+      "source": "MarketWatch",
+      "publishedAt": "2026-11-20T10:15:00.000Z"
+    },
+    {
+      "title": "Why is Anthropic stock sliding today?",
+      "link": "https://www.investing.com/news/stock-market-news/why-is-anthropic-stock-sliding-today-93CH-5041101",
+      "source": "Investing.com",
+      "publishedAt": "2026-11-20T10:13:41.000Z"
+    },
+    {
+      "title": "European shares on track for steepest weekly drop since March",
+      "link": "https://www.investing.com/news/stock-market-news/european-shares-head-for-steepest-weekly-drop-since-march-5040936",
+      "source": "Investing.com",
+      "publishedAt": "2026-11-20T10:12:39.000Z"
+    },
+    {
+      "title": "House Democrats investigate Nvidia’s role in Commerce probe - report",
+      "link": "https://www.investing.com/news/stock-market-news/house-democrats-investigate-nvidias-role-in-commerce-probe--report-93CH-5041100",
+      "source": "Investing.com",
+      "publishedAt": "2026-11-20T10:10:28.000Z"
+    },
+    {
+      "title": "Stock Market Today: Dow Jones, S&P 500 Futures Fall as Trump Weighs Iran Decision— INTU, ROST, KEYS in Focus",
+      "link": "https://www.benzinga.com/markets/equities/26/11/63465508/stock-market-today-dow-jones-sp-500-futures-fall-as-trump-weighs-iran-decision-intu-rost-keys-in-focus",
+      "source": "Benzinga",
+      "publishedAt": "2026-11-20T10:09:50.000Z"
+    },
+    {
+      "title": "Anthropic shares fall 6% in premarket amid AI selloff as Nvidia, AMD shares drop",
+      "link": "https://www.cnbc.com/2026/11/20/anthropic-stock-ai-amd-nvidia.html",
+      "source": "CNBC",
+      "publishedAt": "2026-11-20T10:08:47.000Z"
+    },
+    {
+      "title": "Here’s what happened next after previous times the S&P 500 losing streak reached six sessions",
+      "link": "https://www.marketwatch.com/story/heres-what-happened-next-after-previous-times-the-s-p-500-losing-streak-reached-six-sessions-13ff7704?mod=mw_rss_topstories",
+      "source": "MarketWatch",
+      "publishedAt": "2026-11-20T10:08:00.000Z"
+    },
+    {
+      "title": "European shares near 1-month lows as Anthropic’s debut fails to halt tech rout",
+      "link": "https://www.investing.com/news/stock-market-news/european-shares-near-1month-lows-as-anthropics-debut-fails-to-halt-tech-rout-5040695",
+      "source": "Investing.com",
+      "publishedAt": "2026-11-20T10:01:32.000Z"
+    },
+    {
+      "title": "How Bear Grylls lived in the harsh conditions of his own home on an abandoned island with ‘no power, no water, no roof’",
+      "link": "https://www.marketwatch.com/story/how-bear-grylls-lived-in-the-harsh-conditions-of-his-own-home-on-an-abandoned-island-with-no-power-no-water-no-roof-8c3e17c4?mod=mw_rss_topstories",
+      "source": "MarketWatch",
+      "publishedAt": "2026-11-20T10:01:00.000Z"
+    },
+    {
+      "title": "Kushner says Russia 'comfortable' with idea of NATO-like security guarantees for Ukraine",
+      "link": "https://www.cnbc.com/2026/11/20/kushner-ukraine-nato-russia-trump-putin.html",
+      "source": "CNBC",
+      "publishedAt": "2026-11-20T09:56:03.000Z"
+    },
+    {
+      "title": "Democrats open probe into Nvidia influence on US Megaspeed investigation",
+      "link": "https://www.investing.com/news/stock-market-news/democrats-open-probe-into-nvidia-influence-on-usmegaspeed-investigation-5041051",
+      "source": "Investing.com",
+      "publishedAt": "2026-11-20T09:54:22.000Z"
+    },
+    {
+      "title": "Putin scores ‘massive win’ at first trilateral meeting, rebuilding standing as Ukraine war grinds on",
+      "link": "https://www.cnbc.com/2026/11/20/putin-xi-china-trump-russia-ukraine-.html",
+      "source": "CNBC",
+      "publishedAt": "2026-11-20T09:26:45.000Z"
+    },
+    {
+      "title": "SoftBank suffers worst day in over two years as AI sell-off hits Asian tech stocks",
       "link": "https://www.cnbc.com/2026/11/20/softbank-ai-tech-stocks-slide-anthropic-debut.html",
       "source": "CNBC",
-      "publishedAt": "2026-11-20T02:14:50.000Z"
+      "publishedAt": "2026-11-20T07:23:06.000Z"
     },
     {
-      "title": "+82% since entry - a cloud software name our models picked keeps climbing",
-      "link": "https://www.investing.com/news/stock-market-news/82-since-entry--a-cloud-software-name-our-models-picked-keeps-climbing-5040510",
-      "source": "Investing.com",
-      "publishedAt": "2026-11-20T02:01:35.000Z"
-    },
-    {
-      "title": "Grand Theft Auto VI draws rave reviews as gamers enter Vice City",
-      "link": "https://www.investing.com/news/stock-market-news/gamers-get-ready-to-enter-vice-city-as-grand-theft-auto-vi-begins-globalrollout-5035485",
-      "source": "Investing.com",
-      "publishedAt": "2026-11-20T02:00:45.000Z"
-    },
-    {
-      "title": "TSMC tightens China AI chip curbs as new US rules close manufacturing loophole, sources say",
-      "link": "https://www.investing.com/news/stock-market-news/tsmc-tightens-china-ai-chip-curbs-as-new-us-rules-close-manufacturing-loophole-sources-say-5038806",
-      "source": "Investing.com",
-      "publishedAt": "2026-11-20T01:55:29.000Z"
-    },
-    {
-      "title": "Exclusive-Trump administration weighs forcing US firms to disclose Chinese AI use",
-      "link": "https://www.investing.com/news/stock-market-news/exclusivetrump-administration-weighs-forcing-us-firms-to-disclose-chinese-ai-use-5035455",
-      "source": "Investing.com",
-      "publishedAt": "2026-11-20T01:54:29.000Z"
-    },
-    {
-      "title": "Japan core inflation soars to highest this year as energy subsidy expiry pushes up consumer prices",
-      "link": "https://www.cnbc.com/2026/11/20/japan-inflation-cpi-october.html",
+      "title": "‘More than just a game’: How GTA VI’s blockbuster launch fuels a booming content economy",
+      "link": "https://www.cnbc.com/2026/11/20/gta-vi-launch-streaming-content-economy.html",
       "source": "CNBC",
-      "publishedAt": "2026-11-20T01:49:03.000Z"
+      "publishedAt": "2026-11-20T07:08:36.000Z"
+    },
+    {
+      "title": "Forget Anthropic: In Europe, the IPO hype is about a blue lagoon",
+      "link": "https://www.cnbc.com/2026/11/20/anthropic-ipo-iceland-blue-lagoon.html",
+      "source": "CNBC",
+      "publishedAt": "2026-11-20T06:00:01.000Z"
+    },
+    {
+      "title": "AI is changing software engineering — and some developers miss the struggle",
+      "link": "https://www.cnbc.com/2026/11/20/ai-coding-tools-software-engineers.html",
+      "source": "CNBC",
+      "publishedAt": "2026-11-20T06:00:01.000Z"
+    },
+    {
+      "title": "U.K.-India trade deal faces a stiff test over Scotch whisky import taxes",
+      "link": "https://www.cnbc.com/2026/11/20/uk-india-trade-scotch-whisky-tariffs.html",
+      "source": "CNBC",
+      "publishedAt": "2026-11-20T05:09:52.000Z"
+    },
+    {
+      "title": "Anthropic IPO 'exactly what the markets need,' but analysts warn of volatility",
+      "link": "https://www.cnbc.com/2026/11/20/anthropic-ipo-stocks-market.html",
+      "source": "CNBC",
+      "publishedAt": "2026-11-20T04:51:28.000Z"
+    },
+    {
+      "title": "Senate passes BAAJA permitting reform bill backed by AI, energy sectors",
+      "link": "https://www.cnbc.com/2026/11/20/baaja-bill-senate-passes-permitting-reform.html",
+      "source": "CNBC",
+      "publishedAt": "2026-11-20T03:56:17.000Z"
+    },
+    {
+      "title": "‘Nvidia’s turmoil has me spooked’: Should I sell my stocks and buy real estate — or ride out the storm?",
+      "link": "https://www.marketwatch.com/story/nvidia-spooked-me-should-i-sell-my-stocks-or-ride-out-the-market-turmoil-560583c6?mod=mw_rss_topstories",
+      "source": "MarketWatch",
+      "publishedAt": "2026-11-20T03:31:00.000Z"
+    },
+    {
+      "title": "Jeff Bezos Laughs Off Merging Amazon and His $41 Billion AI Startup as Elon Musk Explores Tesla-SpaceX Deal: 'Such a Funny Idea’",
+      "link": "https://www.benzinga.com/news/26/11/63463473/jeff-bezos-laughs-off-merging-amazon-and-his-41-billion-ai-startup-as-elon-musk-explores-tesla-spacex-deal-such-a-funny-idea",
+      "source": "Benzinga",
+      "publishedAt": "2026-11-20T03:00:07.000Z"
     },
     {
       "title": "I’m terrified of a market crash. Should I put $400,000 of my $1 million retirement savings into an annuity?",
@@ -62,124 +170,16 @@
       "publishedAt": "2026-11-20T01:22:00.000Z"
     },
     {
-      "title": "Wall Street futures fall as Anthropic debut fails to revive AI trade",
-      "link": "https://www.investing.com/news/stock-market-news/wall-street-futures-fall-as-anthropic-debut-fails-to-revive-ai-trade-5040450",
-      "source": "Investing.com",
-      "publishedAt": "2026-11-20T01:11:53.000Z"
-    },
-    {
-      "title": "Commerce approved sales of more than 879,000 AI chips to Chinese companies, Rep. Mast says",
-      "link": "https://www.cnbc.com/2026/11/19/nvidia-amd-china-chip-sales-congress.html",
-      "source": "CNBC",
-      "publishedAt": "2026-11-20T00:53:55.000Z"
-    },
-    {
-      "title": "UK tribunal confirms government order demanding access to Apple data",
-      "link": "https://www.investing.com/news/stock-market-news/uk-has-imposed-an-order-demanding-access-to-apple-data-uk-tribunal-says-5039030",
-      "source": "Investing.com",
-      "publishedAt": "2026-11-20T00:42:25.000Z"
-    },
-    {
-      "title": "Citigroup misbooked trades at European unit, underestimated risk by $35 bln, Reuters reports",
-      "link": "https://www.investing.com/news/stock-market-news/citigroup-misbooked-trades-at-european-unit-underestimated-risk-by-35-bln-reuters-reports-93CH-5040402",
-      "source": "Investing.com",
-      "publishedAt": "2026-11-20T00:21:00.000Z"
-    },
-    {
-      "title": "Trump cyber director Sean Cairncross to leave post- Axios",
-      "link": "https://www.investing.com/news/stock-market-news/trump-cyber-director-sean-cairncross-to-leave-post-axios-93CH-5040401",
-      "source": "Investing.com",
-      "publishedAt": "2026-11-20T00:20:50.000Z"
-    },
-    {
-      "title": "Anthropic IPO: Investors who flip the stock may face brokerage penalty",
-      "link": "https://www.cnbc.com/2026/11/19/anthropic-ipo-flipping-rules.html",
-      "source": "CNBC",
-      "publishedAt": "2026-11-20T00:16:30.000Z"
-    },
-    {
-      "title": "Senate Republicans reject legislation to end Iran war",
-      "link": "https://www.investing.com/news/stock-market-news/senate-republicans-reject-legislation-to-end-iran-war-93CH-5040382",
-      "source": "Investing.com",
-      "publishedAt": "2026-11-20T00:11:28.000Z"
-    },
-    {
-      "title": "AMD dives on short seller report of alleged China exposure",
-      "link": "https://www.cnbc.com/2026/11/19/amd-falls-on-short-seller-report-of-alleged-china-exposure.html",
-      "source": "CNBC",
-      "publishedAt": "2026-11-20T00:08:34.000Z"
-    },
-    {
-      "title": "Anthropic was supposed to save the AI trade. What went wrong?",
-      "link": "https://www.cnbc.com/2026/11/19/anthropic-ipo-ai-stocks-selloff.html",
-      "source": "CNBC",
-      "publishedAt": "2026-11-20T00:00:38.000Z"
-    },
-    {
       "title": "After Anthropic’s ‘bittersweet’ IPO, here’s what lies ahead",
       "link": "https://www.marketwatch.com/story/after-anthropics-bittersweet-ipo-heres-what-lies-ahead-8c32fdb7?mod=mw_rss_topstories",
       "source": "MarketWatch",
       "publishedAt": "2026-11-19T23:56:00.000Z"
     },
     {
-      "title": "California attorney general issues Nvidia subpoena in probe of China chip diversion",
-      "link": "https://www.cnbc.com/2026/11/19/nvidia-california-bonta-subpoena-china-chips.html",
-      "source": "CNBC",
-      "publishedAt": "2026-11-19T23:21:23.000Z"
-    },
-    {
       "title": "These were the only stocks that rose amid the stock market’s wipeout Thursday",
       "link": "https://www.marketwatch.com/story/these-were-the-only-stocks-that-rose-amid-the-stock-markets-wipeout-thursday-1eaf32ba?mod=mw_rss_topstories",
       "source": "MarketWatch",
       "publishedAt": "2026-11-19T23:11:00.000Z"
-    },
-    {
-      "title": "Bitcoin Is No Longer as Risky as It Was a Decade Ago: Grayscale",
-      "link": "https://www.benzinga.com/crypto/cryptocurrency/26/11/63462481/bitcoin-is-no-longer-as-risky-as-it-was-a-decade-ago-grayscale",
-      "source": "Benzinga",
-      "publishedAt": "2026-11-19T23:02:05.000Z"
-    },
-    {
-      "title": "Intuit’s downbeat outlook deepens Wall Street’s anxiety about software companies",
-      "link": "https://www.marketwatch.com/story/intuits-downbeat-outlook-deepens-wall-streets-anxiety-about-software-companies-15b878e5?mod=mw_rss_topstories",
-      "source": "MarketWatch",
-      "publishedAt": "2026-11-19T22:53:00.000Z"
-    },
-    {
-      "title": "A CoreWeave co-founder just made an unconventional $30 million wager on its battered bonds",
-      "link": "https://www.marketwatch.com/story/a-coreweave-co-founder-just-made-an-unconventional-30-million-wager-on-its-battered-bonds-5586b0e9?mod=mw_rss_topstories",
-      "source": "MarketWatch",
-      "publishedAt": "2026-11-19T22:41:00.000Z"
-    },
-    {
-      "title": "Congress passes bill to protect older investors from financial fraud",
-      "link": "https://www.cnbc.com/2026/11/19/financial-exploitation-prevention-act-older-investors-fraud.html",
-      "source": "CNBC",
-      "publishedAt": "2026-11-19T22:23:29.000Z"
-    },
-    {
-      "title": "Anthropic Stock Slips as Apple Aims to Develop AI Agent",
-      "link": "https://www.benzinga.com/trading-ideas/movers/26/11/63461769/anthropic-stock-slips-as-apple-aims-to-develop-ai-agent",
-      "source": "Benzinga",
-      "publishedAt": "2026-11-19T22:13:26.000Z"
-    },
-    {
-      "title": "Anthropic’s stock surges in its debut — and the rest of the market dives anyway",
-      "link": "https://www.marketwatch.com/story/anthropics-stock-surges-in-its-debut-and-the-rest-of-the-market-dives-anyway-19671218?mod=mw_rss_topstories",
-      "source": "MarketWatch",
-      "publishedAt": "2026-11-19T22:12:00.000Z"
-    },
-    {
-      "title": "Markets are sending troubling signals about the state of the economy",
-      "link": "https://www.marketwatch.com/story/markets-are-sending-troubling-signals-about-the-state-of-the-economy-8043f20e?mod=mw_rss_topstories",
-      "source": "MarketWatch",
-      "publishedAt": "2026-11-19T21:57:00.000Z"
-    },
-    {
-      "title": "Bitcoin Is a Better Bet Than COIN Despite Anthropic Narrative, Analyst Says",
-      "link": "https://www.benzinga.com/crypto/cryptocurrency/26/11/63461471/bitcoin-is-a-better-bet-than-coin-despite-anthropic-narrative-analyst-says",
-      "source": "Benzinga",
-      "publishedAt": "2026-11-19T21:54:05.000Z"
     }
   ]
 }
